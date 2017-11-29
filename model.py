@@ -9,11 +9,18 @@ MOL_G = 46
 class Room:
 
     def __init__(self, size, init_air_quality=500, optimal_air_quality=500, occupancy=0, air_changes_per_hour=3):
+        """
+        A simple (and probably flawed) model of CO2 buildup in a room
 
-        self.t = 0
+        :param size: room dimensions
+        :param init_air_quality: initial co2ppm
+        :param optimal_air_quality: co2ppm provided by room
+        :param occupancy: people in room
+        :param air_changes_per_hour: number of times all air in room has changed per hour
+        """
         self.size = size
         self.cubic_liters = np.prod(size) * 1000
-        self.optimal_air_quality = optimal_air_quality  # ventilation co2ppm
+        self.optimal_air_quality = optimal_air_quality
         self.co2ppm = init_air_quality
         self.occupancy = occupancy
         self.air_changes_per_second = air_changes_per_hour/(60*60)
